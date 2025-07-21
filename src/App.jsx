@@ -1,21 +1,26 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Homepage from "./pages/Homepage";
+import ListRestaurants from "./pages/ListRestaurants";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/list" element={<ListRestaurant />} />
-
-      </Routes>
-        
+      <h1>Welcome to FeelCaribe</h1>
+      <Navbar />
+      <Header />
+      <Footer />
+      <Homepage />
+      <ListRestaurants />
+      
     </>
-  )
+  );
 }
 
 export default App
