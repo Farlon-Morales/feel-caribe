@@ -9,12 +9,10 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/restaurants" element={<ListRestaurants />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }
