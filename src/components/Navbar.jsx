@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function Navbar() {
     return (
-        <nav className="Navbar">
+        <nav className="navbar-box">
             <NavLink to="/">
                 <button>Home</button>
             </NavLink>

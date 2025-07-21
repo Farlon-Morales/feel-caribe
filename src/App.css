@@ -1,35 +1,49 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+.navbar-box {
+  background-color: #4562e7;
+  padding: 10px;
+  display: flex;              
+  justify-content: right;    
+  gap: 20px;                 
+  width: 100%;                
+  box-sizing: border-box;     
+  position: fixed;
+  width: 100vw;
+  top: 0;
 }
 
-.footer-box {
-  background-color: #75cf7b;
-  padding: 20px;
-  text-align: center;
-  border-top: 2px solid #ccc;
-  margin-top: 40px;
+.create-restaurant-box {
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.header-box {
-  background-color: #3b38ec;
-  padding: 20px;
-  text-align: center;
-  border-top: 2px solid #ccc;
-  margin-top: 40px;
+
+.restaurant-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
-.navbar-box {
-  background-color: #bbc325;
-  padding: 20px;
-  text-align: center;
-  border-top: 2px solid #ccc;
-  margin-top: 40px;
+
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
-.card-box {
-   background-color: #1d717c;
-  padding: 20px;
-  text-align: center;
-  border-top: 2px solid #ccc;
-  margin-top: 40px;
+
+.form-group label {
+  flex: 1;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  flex: 2;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }

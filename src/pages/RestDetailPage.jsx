@@ -41,7 +41,7 @@ function RestDetailPage() {
         </Link>
 
         <Link to="/restaurants/create">
-          <button>Add New Restaurant</button>
+          <button>Add Experience</button>
         </Link>
       </div>
     </div>
