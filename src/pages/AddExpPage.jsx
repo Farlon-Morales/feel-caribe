@@ -10,7 +10,6 @@ function AddExpPage() {
   const [restaurant, setRestaurant] = useState(null);
   const [experience, setExperience] = useState("");
   const [loading, setLoading] = useState(true);
-   const [image, setImage] = useState(null);
 
   useEffect(() => {
     axios
@@ -25,34 +24,26 @@ function AddExpPage() {
       });
   }, [restaurantId]);
 
-  const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const formData = new FormData();
-  formData.append("review[content]", experience); // ✅ Rails-style
-  if (image) {
-    formData.append("review[image]", image); // ✅ Rails-style
-  }
+    try {
+      const reviewData = {
+        content: experience.trim(),
+        timestamp: new Date().toISOString(),
+      };
 
-  for (let [key, value] of formData.entries()) {
-    console.log(`${key}:`, value);
-  }
+      await axios.post(
+        `${BASE_URL}/restaurants/${restaurantId}/reviews.json`,
+        reviewData
+      );
 
-  axios
-    .post(`${BASE_URL}/restaurants/${restaurantId}/reviews.json`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-    .then(() => {
       navigate(`/restaurants/${restaurantId}`);
-    })
-    .catch((err) => {
+    } catch (err) {
       console.error("Error submitting experience:", err);
       alert("Something went wrong.");
-    });
-};
-
+    }
+  };
 
   if (loading) return <Loader />;
   if (!restaurant) return <p>Restaurant not found.</p>;
@@ -68,13 +59,9 @@ function AddExpPage() {
           placeholder="What was it like?"
         />
         <br />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
-        <br />
-        <button type="submit">Submit Experience</button>
+        <button type="submit" disabled={!experience.trim()}>
+          Submit Experience
+        </button>
       </form>
     </div>
   );

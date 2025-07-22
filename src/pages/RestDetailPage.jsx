@@ -9,8 +9,10 @@ function RestDetailPage() {
   const { restaurantId } = useParams();
   const [restaurant, setRestaurant] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const [editingId, setEditingId] = useState(null);
+  const [editedContent, setEditedContent] = useState("");
 
-  // Fetch restaurant details
+
   useEffect(() => {
     axios
       .get(`${BASE_URL}/restaurants/${restaurantId}.json`)
@@ -26,25 +28,56 @@ function RestDetailPage() {
       );
   }, [restaurantId]);
 
-  // Fetch experiences related to this restaurant
-  useEffect(() => {
+  // Fetch reviews for this restaurant
+  const fetchReviews = () => {
     axios
-      .get(`${BASE_URL}/experiences.json`)
+      .get(`${BASE_URL}/restaurants/${restaurantId}/reviews.json`)
       .then((response) => {
         if (response.data) {
-          const experiencesArray = Object.entries(response.data).map(
-            ([id, exp]) => ({ id, ...exp })
+          const reviewsArray = Object.entries(response.data).map(
+            ([id, review]) => ({ id, ...review })
           );
-          const filtered = experiencesArray.filter(
-            (exp) => exp.restaurantId === restaurantId
-          );
-          setReviews(filtered);
+          setReviews(reviewsArray);
+        } else {
+          setReviews([]);
         }
       })
-      .catch((error) =>
-        console.error("Error fetching experiences:", error)
-      );
+      .catch((error) => console.error("Error fetching reviews:", error));
+  };
+
+  useEffect(() => {
+    fetchReviews();
   }, [restaurantId]);
+
+  const handleDelete = async (reviewId) => {
+    try {
+      await axios.delete(
+        `${BASE_URL}/restaurants/${restaurantId}/reviews/${reviewId}.json`
+      );
+      fetchReviews();
+    } catch (err) {
+      console.error("Error deleting review:", err);
+    }
+  };
+
+  const startEditing = (id, content) => {
+    setEditingId(id);
+    setEditedContent(content);
+  };
+
+  const handleEditSave = async (reviewId) => {
+    try {
+      await axios.patch(
+        `${BASE_URL}/restaurants/${restaurantId}/reviews/${reviewId}.json`,
+        { content: editedContent }
+      );
+      setEditingId(null);
+      setEditedContent("");
+      fetchReviews();
+    } catch (err) {
+      console.error("Error updating review:", err);
+    }
+  };
 
   if (!restaurant) {
     return <Loader />;
@@ -78,20 +111,29 @@ function RestDetailPage() {
       {reviews.length === 0 && <p>No experiences yet.</p>}
 
       {reviews.map((exp) => (
-        <div key={exp.id}>
-          <h3>{exp.title}</h3>
-          <p>{exp.comment}</p>
-          {exp.imageUrl && (
-            <img
-              src={exp.imageUrl}
-              alt={exp.title}
-              style={{ maxWidth: "300px" }}
-            />
+        <div key={exp.id} className="review">
+          {editingId === exp.id ? (
+            <>
+              <textarea
+                value={editedContent}
+                onChange={(e) => setEditedContent(e.target.value)}
+                rows="3"
+              />
+              <button onClick={() => handleEditSave(exp.id)}>Save</button>
+              <button onClick={() => setEditingId(null)}>Cancel</button>
+            </>
+          ) : (
+            <>
+              <p>{exp.content}</p>
+              <button onClick={() => startEditing(exp.id, exp.content)}>Edit</button>
+              <button onClick={() => handleDelete(exp.id)}>Delete</button>
+            </>
           )}
         </div>
       ))}
     </div>
   );
 }
+
 
 export default RestDetailPage;
