@@ -88,7 +88,7 @@ function RestDetailPage() {
       <h1>{restaurant.name}</h1>
       <p>{restaurant.description}</p>
       <p>
-        Location: {restaurant.location?.city}, {restaurant.location?.country}
+        Location: {restaurant.location}
       </p>
       <p>
         Website:{" "}

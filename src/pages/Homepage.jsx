@@ -1,9 +1,10 @@
+import About from "../components/About";
 import RestaurantList from "../components/RestaurantList";
 
 function Homepage() {
   return (
     <div className="homepage-box">
-      <h1>Welcome to the Food Explorer</h1>
+      <h1>Welcome to the FeelCaribe</h1>
 
       <section className="about">
         <h2>About</h2>
@@ -14,7 +15,7 @@ function Homepage() {
       </section>
 
       <hr />
-
+      <About />
       <RestaurantList />
     </div>
   );

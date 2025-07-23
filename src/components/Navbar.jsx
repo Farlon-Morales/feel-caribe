@@ -7,7 +7,7 @@ function Navbar() {
                 <button>Home</button>
             </NavLink>
             <NavLink to="/restaurants/about">
-                <button>Favorites</button>
+                <button>About</button>
             </NavLink>
             <NavLink to="/restaurants/add">
                 <button>Add Restaurant</button>

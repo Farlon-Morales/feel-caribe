@@ -32,7 +32,7 @@ function RestListPage() {
 
   return (
     <div>
-      <h1>Number of restaurants: {restaurants.length}</h1>
+      <h1>Restaurats to visit: {restaurants.length}</h1>
 
       <div>
         {restaurants.map((restaurant) => (
