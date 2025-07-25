@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
 
 .navbar-box {
   background-color: #4562e7;
