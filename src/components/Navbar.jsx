@@ -9,6 +9,9 @@ function Navbar() {
             <NavLink to="/restaurants/about">
                 <button class="btn btn-accent">About</button>
             </NavLink>
+            <NavLink to="/restaurants">
+                <button class="btn btn-accent">All Restaurants</button>
+            </NavLink>
             <NavLink to="/restaurants/add">
                 <button class="btn btn-accent">Add Restaurant</button>
             </NavLink>

@@ -284,3 +284,50 @@
   z-index: -1;
   pointer-events: none;
 }
+.caribbean-blur-bg {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 0;
+}
+
+.caribbean-blur-bg {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 0;
+}
+
+
+.caribbean-blur-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('https://www.sandals.com/blog/content/images/2021/04/Curacao-Willemstad-Colorful-Buildings.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: -2;
+}
+
+
+.caribbean-blur-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.3); /* softer white overlay */
+  backdrop-filter: blur(8px); /* less intense blur */
+  -webkit-backdrop-filter: blur(8px);
+  z-index: -1;
+}

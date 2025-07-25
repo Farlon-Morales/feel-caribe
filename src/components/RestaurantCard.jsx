@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 function RestaurantCard({ restaurant }) {
   return (
-    <div className="w-72 p-4 border border-gray-300 rounded-lg bg-white shadow text-center">
-      <h3 className="text-lg font-semibold mb-2">{restaurant.name}</h3>
-      <p className="text-sm text-gray-600 mb-4">{restaurant.description}</p>
+    <div className="restaurant-card text-center">
+      <h3 className="text-lg font-semibold text-teal-800 mb-2">{restaurant.name}</h3>
+      <p className="text-sm text-gray-700 mb-3">{restaurant.description}</p>
 
       {restaurant.imageUrl && (
         <img
@@ -15,7 +15,9 @@ function RestaurantCard({ restaurant }) {
       )}
 
       <Link to={`/restaurants/${restaurant.id}`}>
-        <button className="btn btn-primary w-full">See Experiences</button>
+        <button className="btn bg-teal-600 text-white hover:bg-teal-700 w-full transition">
+          See Experiences
+        </button>
       </Link>
     </div>
   );

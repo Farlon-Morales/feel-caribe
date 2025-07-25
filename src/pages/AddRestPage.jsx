@@ -30,8 +30,8 @@ function AddRestPage() {
   };
 
   return (
-    <div className="add-restaurant-background min-h-screen py-12">
-      <div className="max-w-2xl mx-auto bg-[#fffbe6] p-8 rounded-xl shadow-lg">
+    <div className="caribbean-blur-bg min-h-screen py-12">
+      <div className="max-w-2xl mx-auto bg-[#fffbe6] p-8 rounded-xl shadow-lg backdrop-blur-sm bg-opacity-90">
         <h2 className="text-2xl font-bold text-center text-teal-700 mb-6">
           Add a Caribbean Restaurant 🌴
         </h2>
@@ -110,7 +110,7 @@ function AddRestPage() {
             </button>
           </div>
         </form>
-      </div>s
+      </div>
     </div>
   );
 }
