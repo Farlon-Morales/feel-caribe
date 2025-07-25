@@ -6,7 +6,7 @@ import AddRestPage from "./pages/AddRestPage"
 import RestDetailPage from './pages/RestDetailPage';
 import './App.css'
 import AddExpPage from './pages/AddExpPage';
-import About from './components/About';
+import AboutPage from './pages/AboutPage';
 import Restaurants from './components/Restaurants';
 
 function App() {
@@ -16,10 +16,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/restaurants/add" element={<AddRestPage />} />
-         <Route path="/restaurants/about" element={<About />} />
+         <Route path="/restaurants/about" element={<AboutPage />} />
         <Route path="/restaurants/" element={<RestListPage/>} />
         <Route path="/restaurants/:restaurantId" element={<RestDetailPage />} />
         <Route path="/restaurants/:restaurantId/add-experience" element={<AddExpPage />} />
+
       </Routes>
     </Router>              
   );

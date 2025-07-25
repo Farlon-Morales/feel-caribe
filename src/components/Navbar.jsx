@@ -4,13 +4,13 @@ function Navbar() {
     return (
         <nav className="navbar-box">
             <NavLink to="/">
-                <button>Home</button>
+                <button class="btn btn-accent">Home</button>
             </NavLink>
             <NavLink to="/restaurants/about">
-                <button>About</button>
+                <button class="btn btn-accent">About</button>
             </NavLink>
             <NavLink to="/restaurants/add">
-                <button>Add Restaurant</button>
+                <button class="btn btn-accent">Add Restaurant</button>
             </NavLink>
         </nav>
     );

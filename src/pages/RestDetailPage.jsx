@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-
 import { BASE_URL } from "../config/api";
 import Loader from "../components/Loader";
 
@@ -77,63 +76,106 @@ function RestDetailPage() {
     }
   };
 
-  if (!restaurant) {
-    return <Loader />;
-  }
+  if (!restaurant) return <Loader />;
 
   return (
-    <div>
+    <div className="max-w-3xl mx-auto mt-10 bg-[#fffbe6] p-8 rounded-xl shadow-md">
       {restaurant.imageUrl && (
-        <div className="restaurant-banner">
-          <img src={restaurant.imageUrl} alt={`${restaurant.name} banner`} />
+        <div className="mb-6 rounded-lg overflow-hidden shadow">
+          <img
+            src={restaurant.imageUrl}
+            alt={`${restaurant.name} banner`}
+            className="w-full h-64 object-cover"
+          />
         </div>
       )}
-      <h1>{restaurant.name}</h1>
-      <p>{restaurant.description}</p>
-      <p>
-        Location: {restaurant.location}
+
+      <h1 className="text-3xl font-bold text-teal-700 mb-2">{restaurant.name}</h1>
+      <p className="text-gray-700 mb-4">{restaurant.description}</p>
+
+      <p className="text-sm mb-1">
+        <span className="font-semibold text-teal-800">Location:</span>{" "}
+        {restaurant.location}
       </p>
-      <p>
-        Website:{" "}
-        <a href={restaurant.url} target="_blank" rel="noreferrer">
+      <p className="text-sm mb-4">
+        <span className="font-semibold text-teal-800">Website:</span>{" "}
+        <a
+          href={restaurant.url}
+          target="_blank"
+          rel="noreferrer"
+          className="text-blue-600 hover:underline"
+        >
           {restaurant.url}
         </a>
       </p>
 
-      <div>
+      <div className="flex gap-4 mb-6">
         <Link to="/restaurants">
-          <button>Back to Restaurants</button>
+          <button className="btn bg-teal-600 text-white hover:bg-teal-700 transition px-6">
+            Back to Restaurants
+          </button>
         </Link>
-
         <Link to={`/restaurants/${restaurantId}/add-experience`}>
-          <button>Add Experience</button>
+          <button className="btn bg-orange-500 text-white hover:bg-orange-600 transition px-6">
+            Add Experience
+          </button>
         </Link>
       </div>
 
-      <h2>Guest Experiences</h2>
-      {reviews.length === 0 && <p>No experiences yet.</p>}
+      <h2 className="text-xl font-bold text-teal-800 mb-4">Guest Experiences</h2>
+      {reviews.length === 0 && <p className="text-gray-600">No experiences yet.</p>}
 
-      {reviews.map((exp) => (
-        <div key={exp.id} className="review">
-          {editingId === exp.id ? (
-            <>
-              <textarea
-                value={editedContent}
-                onChange={(e) => setEditedContent(e.target.value)}
-                rows="3"
-              />
-              <button onClick={() => handleEditSave(exp.id)}>Save</button>
-              <button onClick={() => setEditingId(null)}>Cancel</button>
-            </>
-          ) : (
-            <>
-              <p>{exp.content}</p>
-              <button onClick={() => startEditing(exp.id, exp.content)}>Edit</button>
-              <button onClick={() => handleDelete(exp.id)}>Delete</button>
-            </>
-          )}
-        </div>
-      ))}
+      <div className="space-y-4">
+        {reviews.map((exp) => (
+          <div
+            key={exp.id}
+            className="bg-white p-4 rounded-lg shadow border border-gray-200"
+          >
+            {editingId === exp.id ? (
+              <>
+                <textarea
+                  value={editedContent}
+                  onChange={(e) => setEditedContent(e.target.value)}
+                  rows="3"
+                  className="w-full border border-gray-300 rounded-md p-2 mb-3"
+                />
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => handleEditSave(exp.id)}
+                    className="btn bg-teal-600 text-white hover:bg-teal-700 px-4"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setEditingId(null)}
+                    className="btn bg-gray-300 text-black hover:bg-gray-400 px-4"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="text-gray-800 mb-3">{exp.content}</p>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => startEditing(exp.id, exp.content)}
+                    className="btn bg-yellow-500 text-white hover:bg-yellow-600 px-4"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(exp.id)}
+                    className="btn bg-red-600 text-white hover:bg-red-700 px-4"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

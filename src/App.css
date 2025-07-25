@@ -1,20 +1,40 @@
 @import "tailwindcss";
-@plugin "daisyui";
 
 
-.navbar-box {
-  background-color: #4562e7;
-  padding: 10px;
-  display: flex;              
-  justify-content: right;    
-  gap: 20px;                 
-  width: 100%;                
-  box-sizing: border-box;     
-  position: fixed;
+
+/* === HOMEPAGE === */
+.homepage-box {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  padding: 2rem;
+  border-radius: 12px;
   width: 100vw;
-  top: 0;
+  margin-top: 4rem;
+  box-sizing: border-box;
 }
 
+
+/* === NAVBAR === */
+.navbar-box {
+  background-color: #fffbe6;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  width: 100vw;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 12px 12px;
+}
+
+
+/* === CREATE RESTAURANT FORM === */
 .create-restaurant-box {
   max-width: 800px;
   margin: 100px auto;
@@ -50,8 +70,11 @@
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
+
+
+/* === RESTAURANT CARDS === */
 .restaurant-card {
-   width: 300px;
+  width: 300px;
   padding: 16px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -59,6 +82,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+
 .restaurant-image {
   width: 100%;
   height: 200px;
@@ -66,9 +90,197 @@
   border-radius: 6px;
   margin-bottom: 10px;
 }
+
 .restaurant-banner img {
   width: 100%;
   height: 300px;
   object-fit: cover;
   display: block;
+}
+
+
+/* === HOMEPAGE SECTIONS WITH IMAGE BANNERS === */
+.about-card,
+.restaurants-box {
+  position: relative;
+  height: 300px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  color: white;
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.restaurants-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url("https://www.naarcuracao.com/wp-content/uploads/2025/04/Restaurants-Curacao-Mi-Familia-Pietermaai-1600x900-1-1536x864.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.about-card *,
+.restaurants-box * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* === ABOUT PAGE === */
+.about-page-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  max-width: 1100px;
+  width: 100%;
+  padding: 0 2rem;
+  margin: 3rem auto;
+}
+
+@media (min-width: 768px) {
+  .about-page-content {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.about-page-image {
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.about-page-text {
+  flex: 1;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(4px);                  
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #1a1a1a;
+}
+
+.about-page-text h3 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+.about-page-text p {
+  color: #333;
+}
+.restaurant-card {
+  width: 18rem;
+  height: 28rem; /* fixed card height */
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.restaurant-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #0f766e;
+  margin-bottom: 0.5rem;
+}
+
+.restaurant-card p {
+  font-size: 0.875rem;
+  color: #555;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.restaurant-card img {
+  width: 100%;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.restaurant-card button {
+  background-color: #0d9488;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  width: 100%;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.restaurant-card button:hover {
+  background-color: #0f766e;
+}
+
+.add-restaurant-background {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('https://www.sandals.com/blog/content/images/2021/04/Curacao-Willemstad-Colorful-Buildings.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: auto;
+}
+
+.add-restaurant-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+  pointer-events: none;
 }

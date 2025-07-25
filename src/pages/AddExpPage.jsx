@@ -46,22 +46,38 @@ function AddExpPage() {
   };
 
   if (loading) return <Loader />;
-  if (!restaurant) return <p>Restaurant not found.</p>;
+  if (!restaurant) return <p className="text-white text-center mt-10">Restaurant not found.</p>;
 
   return (
-    <div>
-      <h2>Share your experience at {restaurant.name}</h2>
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={experience}
-          onChange={(e) => setExperience(e.target.value)}
-          rows="4"
-          placeholder="What was it like?"
-        />
-        <br />
-        <button type="submit" disabled={!experience.trim()}>
-          Submit Experience
-        </button>
+    <div className="max-w-2xl mx-auto mt-16 bg-[#fffbe6] p-8 rounded-xl shadow-lg backdrop-blur-sm bg-opacity-90">
+      <h2 className="text-2xl font-bold text-center text-teal-700 mb-6">
+        Share your experience at {restaurant.name}
+      </h2>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label className="block text-sm font-semibold text-teal-800 mb-1">
+            Your Experience
+          </label>
+          <textarea
+            value={experience}
+            onChange={(e) => setExperience(e.target.value)}
+            rows="5"
+            placeholder="What was it like?"
+            className="textarea textarea-bordered w-full bg-white"
+            required
+          />
+        </div>
+
+        <div className="text-center">
+          <button
+            type="submit"
+            disabled={!experience.trim()}
+            className="btn bg-teal-600 text-white hover:bg-teal-700 transition px-8"
+          >
+            Submit Experience
+          </button>
+        </div>
       </form>
     </div>
   );

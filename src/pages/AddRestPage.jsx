@@ -20,83 +20,97 @@ function AddRestPage() {
       description,
       location,
       url,
-      imageUrl: imageUrl, 
+      imageUrl,
     };
 
     axios
-      .post(`${BASE_URL}/restaurants.json`, newRestaurant) // don't forget .json for Firebase
+      .post(`${BASE_URL}/restaurants.json`, newRestaurant)
       .then(() => navigate("/restaurants"))
       .catch((e) => console.log("Error creating restaurant:", e));
   };
 
   return (
-    <div className="create-restaurant-box">
-      <h2>Add New Restaurant</h2>
+    <div className="add-restaurant-background min-h-screen py-12">
+      <div className="max-w-2xl mx-auto bg-[#fffbe6] p-8 rounded-xl shadow-lg">
+        <h2 className="text-2xl font-bold text-center text-teal-700 mb-6">
+          Add a Caribbean Restaurant 🌴
+        </h2>
 
-      <form onSubmit={handleSubmit} className="restaurant-form">
-        <div className="form-group">
-          <label>
-            Name:
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-semibold text-teal-800 mb-1">
+              Name
+            </label>
             <input
               type="text"
-              placeholder="Enter Restaurant name"
+              placeholder="Restaurant Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              className="input input-bordered w-full bg-white"
             />
-          </label>
-        </div>
+          </div>
 
-        <div className="form-group">
-          <label>
-            Location:
+          <div>
+            <label className="block text-sm font-semibold text-teal-800 mb-1">
+              Location
+            </label>
             <input
               type="text"
-              placeholder= "Enter location"
+              placeholder="Willemstad, Curaçao"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
+              className="input input-bordered w-full bg-white"
             />
-          </label>
-        </div>
+          </div>
 
-        <div className="form-group">
-          <label>
-            Website Link:
+          <div>
+            <label className="block text-sm font-semibold text-teal-800 mb-1">
+              Website
+            </label>
             <input
               type="text"
+              placeholder="https://..."
               value={url}
-              placeholder="Enter website URL"
               onChange={(e) => setUrl(e.target.value)}
+              className="input input-bordered w-full bg-white"
             />
-          </label>
-        </div>
+          </div>
 
-        <div className="form-group">
-          <label>
-            Upload Image URL:
+          <div>
+            <label className="block text-sm font-semibold text-teal-800 mb-1">
+              Image URL
+            </label>
             <input
               type="url"
+              placeholder="https://images.unsplash.com/..."
               value={imageUrl}
-              placeholder="e.g. https://... "
               onChange={(e) => setImageUrl(e.target.value)}
+              className="input input-bordered w-full bg-white"
             />
-          </label>
-        </div>
+          </div>
 
-        <div className="form-group">
-          <label>
-            Write review:
+          <div>
+            <label className="block text-sm font-semibold text-teal-800 mb-1">
+              Review
+            </label>
             <textarea
+              placeholder="Tell us about your experience..."
               value={description}
-              placeholder="Tell us about your experience"
               onChange={(e) => setDescription(e.target.value)}
               required
+              className="textarea textarea-bordered w-full bg-white"
+              rows={4}
             />
-          </label>
-        </div>
+          </div>
 
-        <button type="submit">Submit</button>
-      </form>
+          <div className="text-center">
+            <button className="btn bg-teal-600 text-white hover:bg-teal-700 transition px-8">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>s
     </div>
   );
 }

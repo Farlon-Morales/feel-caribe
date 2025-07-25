@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../config/api";
 import Loader from "../components/Loader";
-import RestaurantCard from "../components/RestaurantCard"; 
+import RestaurantCard from "../components/RestaurantCard";
 
 function RestListPage() {
   const [restaurants, setRestaurants] = useState(null);
@@ -18,14 +18,13 @@ function RestListPage() {
           return;
         }
 
-        const restaurantsArray = Object.entries(data).map(([id, rest]) => ({
-          id,
-          ...rest,
-        })).reverse();
+        const restaurantsArray = Object.entries(data)
+          .map(([id, rest]) => ({ id, ...rest }))
+          .reverse();
 
         setRestaurants(restaurantsArray);
       })
-      .catch((e) => console.log("Error fetching restaurants:", e));
+      .catch((e) => console.error("Error fetching restaurants:", e));
   }, []);
 
   if (restaurants === null) {
@@ -33,10 +32,12 @@ function RestListPage() {
   }
 
   return (
-    <div>
-      <h1>Restaurants to visit: {restaurants.length}</h1>
+    <div className="px-4 py-8">
+      <h1 className="text-2xl font-bold text-center mb-8">
+        Restaurants to Visit: {restaurants.length}
+      </h1>
 
-      <div className="NewRest-card">
+      <div className="flex flex-wrap gap-6 justify-center">
         {restaurants.map((restaurant) => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         ))}
