@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { BASE_URL } from "../config/api";
-import Loader from "./Loader";
+import Loader from "../components/Loader";
+import RestaurantCard from "../components/RestaurantCard"; 
 
 function RestListPage() {
   const [restaurants, setRestaurants] = useState(null);
 
   useEffect(() => {
-    axios.get(BASE_URL + "/restaurants.json")
+    axios
+      .get(BASE_URL + "/restaurants.json")
       .then((response) => {
         const data = response.data;
 
@@ -16,9 +17,10 @@ function RestListPage() {
           setRestaurants([]);
           return;
         }
+
         const restaurantsArray = Object.entries(data).map(([id, rest]) => ({
           id,
-          ...rest
+          ...rest,
         })).reverse();
 
         setRestaurants(restaurantsArray);
@@ -32,18 +34,11 @@ function RestListPage() {
 
   return (
     <div>
-      <h1>Restaurats to visit: {restaurants.length}</h1>
+      <h1>Restaurants to visit: {restaurants.length}</h1>
 
-      <div>
+      <div className="NewRest-card">
         {restaurants.map((restaurant) => (
-          <div key={restaurant.id}>
-            <h3>{restaurant.name}</h3>
-            <p>{restaurant.description}</p>
-
-            <Link to={`/restaurants/${restaurant.id}`}>
-              <button>See Experiences</button>
-            </Link>
-          </div>
+          <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         ))}
       </div>
     </div>

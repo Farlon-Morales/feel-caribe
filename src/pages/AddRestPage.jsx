@@ -8,7 +8,7 @@ function AddRestPage() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [url, setUrl] = useState("");
-  const [img, setImg] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ function AddRestPage() {
       description,
       location,
       url,
-      image: img, 
+      imageUrl: imageUrl, 
     };
 
     axios
@@ -39,6 +39,7 @@ function AddRestPage() {
             Name:
             <input
               type="text"
+              placeholder="Enter Restaurant name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -51,6 +52,7 @@ function AddRestPage() {
             Location:
             <input
               type="text"
+              placeholder= "Enter location"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
@@ -63,6 +65,7 @@ function AddRestPage() {
             <input
               type="text"
               value={url}
+              placeholder="Enter website URL"
               onChange={(e) => setUrl(e.target.value)}
             />
           </label>
@@ -70,27 +73,29 @@ function AddRestPage() {
 
         <div className="form-group">
           <label>
-            Upload Image:
+            Upload Image URL:
             <input
-              type="text"
-              value={img}
-              onChange={(e) => setImg(e.target.value)}
+              type="url"
+              value={imageUrl}
+              placeholder="e.g. https://... "
+              onChange={(e) => setImageUrl(e.target.value)}
             />
           </label>
         </div>
 
         <div className="form-group">
           <label>
-            Tell Us About This Place:
+            Write review:
             <textarea
               value={description}
+              placeholder="Tell us about your experience"
               onChange={(e) => setDescription(e.target.value)}
               required
             />
           </label>
         </div>
 
-        <button type="submit">Add Restaurant</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

@@ -1,12 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Homepage from "./pages/Homepage";
-import RestListPage from "./components/RestaurantList";
+import RestListPage from "./pages/RestListPage";
 import AddRestPage from "./pages/AddRestPage"
 import RestDetailPage from './pages/RestDetailPage';
 import './App.css'
 import AddExpPage from './pages/AddExpPage';
-
+import About from './components/About';
+import Restaurants from './components/Restaurants';
 
 function App() {
   return (
@@ -15,12 +16,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/restaurants/add" element={<AddRestPage />} />
-        <Route path="/restaurants" element={<RestListPage/>} />
+         <Route path="/restaurants/about" element={<About />} />
+        <Route path="/restaurants/" element={<RestListPage/>} />
         <Route path="/restaurants/:restaurantId" element={<RestDetailPage />} />
         <Route path="/restaurants/:restaurantId/add-experience" element={<AddExpPage />} />
       </Routes>
     </Router>              
-  );ß
+  );
 }                                   
 
 export default App;

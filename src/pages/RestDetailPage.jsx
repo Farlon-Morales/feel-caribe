@@ -12,7 +12,6 @@ function RestDetailPage() {
   const [editingId, setEditingId] = useState(null);
   const [editedContent, setEditedContent] = useState("");
 
-
   useEffect(() => {
     axios
       .get(`${BASE_URL}/restaurants/${restaurantId}.json`)
@@ -28,7 +27,6 @@ function RestDetailPage() {
       );
   }, [restaurantId]);
 
-  // Fetch reviews for this restaurant
   const fetchReviews = () => {
     axios
       .get(`${BASE_URL}/restaurants/${restaurantId}/reviews.json`)
@@ -85,6 +83,11 @@ function RestDetailPage() {
 
   return (
     <div>
+      {restaurant.imageUrl && (
+        <div className="restaurant-banner">
+          <img src={restaurant.imageUrl} alt={`${restaurant.name} banner`} />
+        </div>
+      )}
       <h1>{restaurant.name}</h1>
       <p>{restaurant.description}</p>
       <p>
@@ -134,6 +137,5 @@ function RestDetailPage() {
     </div>
   );
 }
-
 
 export default RestDetailPage;
